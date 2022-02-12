@@ -14,7 +14,9 @@ namespace sudoku {
   //SUDOKUBOARD CLASS
   //PUBLIC METHODS
   
-  SudokuBoard::SudokuBoard(const short** board, const size_t size){
+  //John Stratton, Why is it that I cannot make this short const**?
+  //TODO figure out what is happening
+  SudokuBoard::SudokuBoard(short** board, const size_t size) : size(size){
     
     // allocate space for board
     this->board = new short*[size];
@@ -39,6 +41,7 @@ namespace sudoku {
 
     // the [] is necessary. Without it, we just delete the ptr at that
     // location rather than the array it points to.
+
     // delete the board
     for(int i = 0; i < size; i++)
       delete [] board[i]; 
@@ -53,5 +56,14 @@ namespace sudoku {
     }
     delete [] predBoard;
   }
+
+  short** sudoku::SudokuBoard::getBoard() const{
+    return board;
+  }
+
+  const size_t sudoku::SudokuBoard::getSize() const{
+    return size;
+  }
+
   
 }

@@ -25,9 +25,6 @@ namespace sudoku {
        * initializes deg_freedom to NUM_ELEMENTS
        */
       PredEntry();
-
-      bool* getD() {return d;};
-
   };
 
   /*
@@ -37,13 +34,16 @@ namespace sudoku {
    * until I've got more functions going.
    */
   void PrintHello();
+
   class SudokuBoard{
+
     private:
       short** board; //2x2 array board
 
       // question here: Would it be clearer to use a struct or typedef?
       PredEntry*** predBoard; // board of predictions
-      size_t size; // width of board (same as height)
+      const size_t size; // width of board (same as height)
+
     public:
       /*
        * constructor initializes the board by copying
@@ -52,10 +52,14 @@ namespace sudoku {
        *   const short[][] board: the sudoku board
        *   const int size: the width of the board (board is assumed square)
        */
-      SudokuBoard(const short** board, const size_t size);
+      SudokuBoard(short** board, const size_t size);
 
       ~SudokuBoard();
-      
+
+      //I'm not sure why this can't be const at the begining or if it should
+      //be. TODO figure out what is happening
+      short** getBoard() const;
+      const size_t getSize() const;
 
   };
 
