@@ -6,21 +6,11 @@
 
 BOOST_AUTO_TEST_SUITE( MyFirstTest )
 
-BOOST_AUTO_TEST_CASE( test_case1 )
-{
-    BOOST_WARN( sizeof(int) < 4 );
-}
-
-BOOST_AUTO_TEST_CASE( test_case2 )
-{
-    BOOST_REQUIRE_EQUAL( 1, 1 );
-}
-
 BOOST_AUTO_TEST_CASE( test_header )
 {
   sudoku::PredEntry* p = new sudoku::PredEntry();
-  //sudoku::PrintHello();
-  //BOOST_TEST(p->getD()[0]);
+  sudoku::PrintHello();
+  BOOST_TEST(p->getD()[0]);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

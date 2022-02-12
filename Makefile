@@ -1,14 +1,23 @@
 CC = g++
+TEST_LIBS = -lboost_unit_test_framework
 
 run: main
-	out/main
+	./main
 
+runtest: test
+	./test
 
-main: main.cpp sudokuLib.cpp SudokuBoard.cpp
-	$(CC) $? -o out/$@
+test: sudokuLib.o SudokuBoard.o test.o
+	$(CC) $? -o $@ $(TEST_LIBS)
 
-.cpp.o:
-	$(CC) -c out/$<
+main: main.o sudokuLib.o SudokuBoard.o
+	$(CC) $? -o $@
+
+test.o:
+	$(CC) -c test.cpp -lboost_unit_test_framework -o test.o
+
+%.o: %.c
+	$(CC) -c -o $< $@ 
 
 clean:
-	rm out/*
+	rm -f *.o && rm -f main && rm -f test
